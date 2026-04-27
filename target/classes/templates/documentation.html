@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Documents</title>
+    <style>
+        body { font-family: Arial; background:#f4f6f9; padding:20px; }
+
+        .doc {
+            background:white;
+            padding:12px;
+            margin:10px 0;
+            border-radius:8px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .actions a {
+            margin-left:10px;
+            text-decoration:none;
+        }
+
+        button {
+            padding:5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Documents</h2>
+
+<form action="/addDoc" method="post">
+    <input name="name" placeholder="Document Name" required>
+    <input name="link" placeholder="Link" required>
+    <button>Add</button>
+</form>
+
+<div th:each="d : ${docs}" class="doc">
+
+    <span><b th:text="${d.name}"></b></span>
+
+    <div class="actions">
+        <a th:href="${d.link}" target="_blank">Download</a>
+
+        <a th:href="@{'/deleteDoc/' + ${d.id}}">❌</a>
+
+        <a th:href="@{'/editDoc/' + ${d.id}}">Update</a>
+    </div>
+
+</div>
+
+<a href="/">⬅ Back</a>
+
+</body>
+</html>

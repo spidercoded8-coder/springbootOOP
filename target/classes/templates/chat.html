@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Communication</title>
+    <style>
+        body { font-family: Arial; background:#f4f6f9; padding:20px; }
+        .message {
+            background:white;
+            padding:10px;
+            margin:10px 0;
+            border-radius:8px;
+        }
+        input { padding:8px; width:70%; }
+        button {
+            padding:8px;
+            background:#2ecc71;
+            border:none;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Internal Communication</h2>
+
+<div th:each="m : ${messages}" class="message">
+    <p th:text="${m.content}"></p>
+    <small th:text="${m.time}"></small>
+</div>
+
+<form method="post">
+    <input name="content" placeholder="Type message..." required>
+    <button>Send</button>
+</form>
+
+<br>
+<a href="/">⬅ Back</a>
+
+</body>
+</html>

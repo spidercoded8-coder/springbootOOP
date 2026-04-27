@@ -1,0 +1,7 @@
+package com.myproject.demo.repository;
+
+import com.myproject.demo.model.AdminUser;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AdminRepository extends JpaRepository<AdminUser, Long> {
+}

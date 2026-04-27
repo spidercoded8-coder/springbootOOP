@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin</title>
+    <style>
+        body { font-family: Arial; background:#f4f6f9; padding:20px; }
+        table {
+            width:100%;
+            background:white;
+            border-collapse:collapse;
+        }
+        th, td {
+            padding:10px;
+            border:1px solid #ddd;
+        }
+        input { padding:5px; margin:5px; }
+        button {
+            padding:5px 10px;
+            background:#2ecc71;
+            border:none;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Admin System</h2>
+
+<table>
+<tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Action</th>
+</tr>
+
+<tr th:each="u : ${users}">
+    <td th:text="${u.name}"></td>
+    <td th:text="${u.email}"></td>
+    <td th:text="${u.role}"></td>
+    <td><a th:href="@{'/deleteUser/' + ${u.id}}">Remove</a></td>
+</tr>
+</table>
+
+<h3>Add User</h3>
+
+<form action="/addUser" method="post">
+    <input name="name" placeholder="Name">
+    <input name="email" placeholder="Email">
+    <input name="role" placeholder="Role">
+    <button>Add</button>
+</form>
+
+<a href="/">⬅ Back</a>
+
+</body>
+</html>

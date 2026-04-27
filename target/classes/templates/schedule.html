@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Scheduling</title>
+    <style>
+        body { font-family: Arial; background:#f4f6f9; padding:20px; }
+        .box {
+            background:white;
+            padding:15px;
+            margin-bottom:15px;
+            border-radius:10px;
+        }
+        input { padding:5px; margin:5px; }
+        button {
+            background:#3498db;
+            color:white;
+            border:none;
+            padding:5px 10px;
+        }
+        a {
+            margin-left:10px;
+            color:red;
+            text-decoration:none;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Tasks</h2>
+
+<div class="box" th:each="t : ${tasks}">
+    <p>
+        <b th:text="${t.title}"></b> - 
+        <span th:text="${t.time}"></span>
+        <a th:href="@{'/deleteTask/' + ${t.id}}">❌</a>
+    </p>
+</div>
+
+<form action="/addTask" method="post">
+    <input name="title" placeholder="Task" required>
+    <input name="time" placeholder="Time" required>
+    <button>Add</button>
+</form>
+
+<hr>
+
+<h2>Notices</h2>
+
+<div class="box" th:each="n : ${notices}">
+    <p th:text="${n.message}"></p>
+</div>
+
+<form action="/addNotice" method="post">
+    <input name="message" placeholder="Notice" required>
+    <button>Add</button>
+</form>
+
+<a href="/">⬅ Back</a>
+
+</body>
+</html>

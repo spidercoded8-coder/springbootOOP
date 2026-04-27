@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Advising</title>
+    <style>
+        body { font-family: Arial; background:#f4f6f9; padding:20px; }
+
+        .category {
+            background:#2c3e50;
+            color:white;
+            padding:10px;
+            margin:10px 0;
+            cursor:pointer;
+            border-radius:5px;
+        }
+
+        .questions {
+            display:none;
+            margin-bottom:15px;
+        }
+
+        .card {
+            background:white;
+            padding:10px;
+            margin:5px 0;
+            border-radius:8px;
+        }
+
+        button {
+            background:#3498db;
+            color:white;
+            border:none;
+            padding:5px 10px;
+            border-radius:5px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Choose Your Question Category</h2>
+
+<div th:each="entry : ${categories}">
+
+    <div class="category" onclick="toggle(this)">
+        <span th:text="${entry.key}"></span>
+    </div>
+
+    <div class="questions">
+        <div th:each="q : ${entry.value}" class="card">
+
+            <p th:text="${q.question}"></p>
+
+            <button onclick="this.nextElementSibling.style.display='block'">
+                Show Answer
+            </button>
+
+            <p style="display:none;" th:text="${q.answer}"></p>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+function toggle(el){
+    let next = el.nextElementSibling;
+    next.style.display = next.style.display === 'block' ? 'none' : 'block';
+}
+</script>
+
+<a href="/">⬅ Back</a>
+
+</body>
+</html>
